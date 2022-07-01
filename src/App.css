@@ -1,38 +1,61 @@
-.App {
-  text-align: center;
+.ant-layout-sider {
+    max-width: 100px !important;
+    min-width: 100px !important;
+    width: 100px !important;
+    padding: 24px 15px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.ant-layout-sider-children {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border-right: 2px solid #eef7fc;
+}
+.side-menu {
+    width: 0;
+    height: 100vh;
+    background: #f5f9fe;
+    transition: all 0.2s;
+}
+.ant-menu {
+    color: #afb6c6;
+    border: none;
+}
+.ant-menu-item {
+    display: flex;
+    margin-top: 40px !important;
+    padding: 0 !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+}
+.ant-menu-title-content {
+    margin: 0 !important;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.ant-menu-item .ant-menu-item-selected {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 120%;
+    text-align: center;
+    color: #afb6c6;
+}
+.ant-menu-inline .ant-menu-item {
+    overflow: unset;
+}
+.side-menu_button {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.ant-layout-sider {
+    background: #f5f9fe;
 }
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.ant-layout {
+    background: #fff;
 }
