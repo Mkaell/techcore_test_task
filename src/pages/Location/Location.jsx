@@ -1,8 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import Card from "../../components/Card/Card";
 import { Button } from "antd";
+import { useSelector, useDispatch } from "react-redux";
 import "./Location.css";
+import Popup from "../../components/Popup/Popup";
 const Location = () => {
+    const [isModalVisible, setIsModalVisible] = useState(false);
+    const locations = useSelector((state) => state.locations.locations);
+
+    const showModal = () => {
+        setIsModalVisible(true);
+    };
+
+    const handleOk = () => {
+        setIsModalVisible(false);
+    };
+
     return (
         <>
             <div className="location-title_wrapper">
@@ -13,8 +26,7 @@ const Location = () => {
                         then set their permissons here too.{" "}
                     </p>
                 </div>
-
-                <Button>Create Location</Button>
+                <Button onClick={showModal}>Create Location</Button>
             </div>
             <div
                 style={{
@@ -24,10 +36,15 @@ const Location = () => {
                     justifyContent: "space-between",
                 }}
             >
-                <Card />
-                <Card />
-                <Card />
+                {locations.map((location) => (
+                    <Card location={location} key={location.id} />
+                ))}
             </div>
+            <Popup
+                showModal={showModal}
+                isModalVisible={isModalVisible}
+                setIsModalVisible={setIsModalVisible}
+            />
         </>
     );
 };

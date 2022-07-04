@@ -18,7 +18,9 @@ const Content = ({ sideMenu }) => {
             >
                 <Breadcrumb>
                     <Breadcrumb.Item>{sideMenu.label}</Breadcrumb.Item>
-                    <Breadcrumb.Item>Bill</Breadcrumb.Item>
+                    {sideMenu.label === "Settings" && (
+                        <Breadcrumb.Item>locations</Breadcrumb.Item>
+                    )}
                 </Breadcrumb>
 
                 <div className="site-layout-background">
