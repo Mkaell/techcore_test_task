@@ -5,6 +5,7 @@ import users from "../../assets/users.svg";
 import settings from "../../assets/settings.svg";
 import pl from "../../assets/pl.svg";
 import vacation_manager from "../../assets/icon-vacation-manager.svg";
+import notfications from "../../assets/notfications-empty.svg";
 import {
     FileOutlined,
     PieChartOutlined,
@@ -22,9 +23,9 @@ import Navigation from "../../routes/Navigation";
 import { useNavigate } from "react-router-dom";
 const { Header, Content, Footer, Sider } = Layout;
 const { TabPane } = Tabs;
-function getItem(label, key, icon, children) {
+function getItem(label, path, icon, children) {
     return {
-        key,
+        path,
         icon,
         children,
         label,
@@ -32,17 +33,28 @@ function getItem(label, key, icon, children) {
 }
 
 const items = [
-    getItem("Dashboard", "Dashboard", home),
-    getItem("Users", "Users", users),
-    getItem("Settings", "Settings", settings),
-    getItem("P&L", "P&L", pl),
-    getItem("Vacation Manager", "Vacation Manager", vacation_manager),
+    getItem("Dashboard", "dashboard", home),
+    getItem("Users", "users", users),
+    getItem("Settings", "settings", settings),
+    getItem("P&L", "pl", pl),
+    getItem("Vacation Manager", "vacation", vacation_manager),
 ];
 
 const SideMenu = ({ open, setOpen, sideMenu, setSideMenu }) => {
     const navigate = useNavigate();
+    const handleLink = (label, path) => {
+        setOpen(true);
+        setSideMenu({
+            label: label,
+            path: path,
+        });
+    };
     useEffect(() => {
-        navigate(sideMenu.toLowerCase());
+        if (sideMenu.path === "settings") {
+            navigate("/");
+        } else {
+            navigate(sideMenu.path);
+        }
     }, [sideMenu]);
 
     return (
@@ -54,47 +66,32 @@ const SideMenu = ({ open, setOpen, sideMenu, setSideMenu }) => {
                 <ul className="sideMenu-list">
                     {items.map((item, i) => (
                         <li
+                            style={
+                                sideMenu.label === item.label
+                                    ? { color: "#00a0ec" }
+                                    : { color: "#afb6c6" }
+                            }
                             key={i}
-                            style={{ cursor: "pointer" }}
-                            onClick={() => setSideMenu(item.label)}
+                            onClick={() => handleLink(item.label, item.path)}
                         >
                             <img src={item.icon} alt={item.label} />
                             {item.label}
                         </li>
                     ))}
-                    {/* <li
-                        style={{ cursor: "pointer" }}
-                        onClick={(e) => setSideMenu(e.key)}
-                    >
-                        Dashboard
-                    </li>
-                    <li onClick={(e) => setSideMenu(e.key)}>Users</li>
-                    <li onClick={(e) => setSideMenu(e.key)}>Settings</li>
-                    <li>P&L</li>
-                    <li>Vacation Manager</li> */}
                 </ul>
-                <div className="logo">
-                    <img src={avatar} alt="avatar" />
+                <div className="sideMenu-img_wrapper">
+                    <img
+                        src={notfications}
+                        alt="notfications"
+                        className="sideMenu-img-notfication"
+                    />
+                    <img
+                        src={avatar}
+                        alt="avatar"
+                        className="sideMenu-img-avatar"
+                    />
                 </div>
             </div>
-            {/* <Sider trigger={null}>
-                <div className="logo">
-                    <img src={logo} alt="logo" />
-                </div>
-
-                <Menu
-                    style={{
-                        background: " #f5f9fe",
-                    }}
-                    defaultSelectedKeys={["Settings"]}
-                    mode="inline"
-                    items={items}
-                    onClick={(e) => setSideMenu(e.key)}
-                />
-                <div className="logo">
-                    <img src={avatar} alt="avatar" />
-                </div>
-            </Sider> */}
             <SubMenu open={open} setOpen={setOpen} sideMenu={sideMenu} />
         </>
     );

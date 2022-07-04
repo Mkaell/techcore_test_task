@@ -17,7 +17,7 @@ const Content = ({ sideMenu }) => {
                 }}
             >
                 <Breadcrumb>
-                    <Breadcrumb.Item>{sideMenu}</Breadcrumb.Item>
+                    <Breadcrumb.Item>{sideMenu.label}</Breadcrumb.Item>
                     <Breadcrumb.Item>Bill</Breadcrumb.Item>
                 </Breadcrumb>
 

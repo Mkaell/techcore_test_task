@@ -1,12 +1,6 @@
-import {
-    MailOutlined,
-    SettingOutlined,
-    AppstoreOutlined,
-    SearchOutlined,
-} from "@ant-design/icons";
 import arrow from "../../assets/Arrow.svg";
-import { Menu, Button } from "antd";
-import { Link, NavLink } from "react-router-dom";
+import { Button } from "antd";
+import { NavLink } from "react-router-dom";
 import "./SubMenu.css";
 
 const SubMenu = ({ open, sideMenu, setOpen }) => {
@@ -23,9 +17,9 @@ const SubMenu = ({ open, sideMenu, setOpen }) => {
                     paddingLeft: open ? "24px" : "0px",
                 }}
             >
-                {sideMenu === "Settings" ? (
+                {sideMenu.label === "Settings" ? (
                     <>
-                        <h2 className="subMenu-title">{sideMenu}</h2>
+                        <h2 className="subMenu-title">{sideMenu.label}</h2>
                         <ul className="subMenu-list">
                             <li>General</li>
                             <li>
@@ -49,7 +43,7 @@ const SubMenu = ({ open, sideMenu, setOpen }) => {
                         </ul>
                     </>
                 ) : (
-                    sideMenu
+                    <h2 className="subMenu-title">{sideMenu.label}</h2>
                 )}
             </div>
             <Button

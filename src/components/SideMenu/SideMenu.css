@@ -22,10 +22,40 @@
     align-items: center;
     justify-content: space-between;
     flex-direction: column;
+    width: 100%;
     margin-top: 40px;
     text-align: center;
     font-size: 14px;
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 120%;
+    cursor: pointer;
+    color: #afb6c6;
 }
+.sideMenu-list li:hover {
+    background: #eef7fc;
+}
+
 .sideMenu-list li:first-child {
     margin-top: 0px;
+}
+
+.sideMenu-list li img {
+    margin-bottom: 8px;
+}
+
+.sideMenu-img_wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.sideMenu-img-avatar {
+    margin-top: 24px;
+}
+.sideMenu-img-notification {
+    width: 16px;
+    height: 16px;
 }

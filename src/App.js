@@ -8,7 +8,11 @@ import { useState } from "react";
 
 function App() {
     const [open, setOpen] = useState(true);
-    const [sideMenu, setSideMenu] = useState("Settings");
+    const [sideMenu, setSideMenu] = useState({
+        label: "Settings",
+        path: "settings",
+    });
+
     return (
         <>
             <BrowserRouter>
