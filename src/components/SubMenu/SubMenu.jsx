@@ -2,17 +2,15 @@ import arrow from "../../assets/Arrow.svg";
 import { Button } from "antd";
 import { NavLink } from "react-router-dom";
 import "./SubMenu.css";
+import { SettingGeneralIcon, SettingVacationIcon } from "../icons/Icons";
 
 const SubMenu = ({ open, sideMenu, setOpen }) => {
     return (
         <div style={{ position: "relative" }}>
             <div
-                className="side-menu"
+                className="subMenu"
                 style={{
                     width: open ? "240px" : "0px",
-                    overflow: "hidden",
-                    paddingTop: "24px",
-                    paddingBottom: "24px",
                     paddingRight: open ? "24px" : "0px",
                     paddingLeft: open ? "24px" : "0px",
                 }}
@@ -21,17 +19,28 @@ const SubMenu = ({ open, sideMenu, setOpen }) => {
                     <>
                         <h2 className="subMenu-title">{sideMenu.label}</h2>
                         <ul className="subMenu-list">
-                            <li>General</li>
-                            <li>
-                                Vacation Manager
-                                <ul>
-                                    <li>Leave Types</li>
-                                    <li>
+                            <li className="subMenu-list_item">
+                                <span className="subMenu-list_item_wrapper">
+                                    <SettingGeneralIcon className="subMenu-list_item_icon" />
+                                    General
+                                </span>
+                            </li>
+
+                            <li className="subMenu-list_item ">
+                                <span className="subMenu-list_item_wrapper active">
+                                    <SettingVacationIcon className="subMenu-list_item_icon active" />
+                                    Vacation Manager
+                                </span>
+                                <ul className="subMenu-nested-list">
+                                    <li className="subMenu-nested-list_item">
+                                        Leave Types
+                                    </li>
+                                    <li className="subMenu-nested-list_item">
                                         <NavLink
                                             to=""
                                             style={({ isActive }) =>
                                                 isActive
-                                                    ? { color: "blue" }
+                                                    ? { color: "#00a0ec" }
                                                     : undefined
                                             }
                                         >

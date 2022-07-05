@@ -12,30 +12,21 @@ const Location = () => {
         setIsModalVisible(true);
     };
 
-    const handleOk = () => {
-        setIsModalVisible(false);
-    };
-
     return (
         <>
             <div className="location-title_wrapper">
                 <div>
-                    <h2>Location</h2>
-                    <p>
+                    <h2 className="location-title">Location</h2>
+                    <p className="location-text">
                         Create new users or update the existng users. You can
                         then set their permissons here too.{" "}
                     </p>
                 </div>
-                <Button onClick={showModal}>Create Location</Button>
+                <button className="location-button" onClick={showModal}>
+                    Create Location
+                </button>
             </div>
-            <div
-                style={{
-                    display: "flex",
-                    width: "100%",
-                    flexWrap: "wrap",
-                    justifyContent: "space-between",
-                }}
-            >
+            <div className="location-cards_wrapper">
                 {locations.map((location) => (
                     <Card location={location} key={location.id} />
                 ))}

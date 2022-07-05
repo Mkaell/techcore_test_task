@@ -2,24 +2,26 @@ import React from "react";
 import Navigation from "../../routes/Navigation";
 import { Breadcrumb } from "antd";
 import Layout from "antd/lib/layout/layout";
+import "./Content.css";
+import { SettingIcon } from "../icons/Icons";
 const Content = ({ sideMenu }) => {
     return (
-        <Layout
-            className="site-layout"
-            style={{ display: "flex", flexDirection: "row" }}
-        >
-            <div
-                style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    width: "100%",
-                    padding: "24px 40px",
-                }}
-            >
-                <Breadcrumb>
-                    <Breadcrumb.Item>{sideMenu.label}</Breadcrumb.Item>
+        <Layout className="content">
+            <div className="content-wrapper">
+                <Breadcrumb separator=">" style={{ marginBottom: "8px" }}>
+                    <Breadcrumb.Item className="bread_crumb">
+                        <SettingIcon
+                            style={{
+                                color: "#00A0EC",
+                                marginRight: "4px",
+                            }}
+                        />
+                        <span className="content-text">{sideMenu.label}</span>
+                    </Breadcrumb.Item>
                     {sideMenu.label === "Settings" && (
-                        <Breadcrumb.Item>locations</Breadcrumb.Item>
+                        <Breadcrumb.Item className="bread_crumb">
+                            <span className="content-text">locations</span>
+                        </Breadcrumb.Item>
                     )}
                 </Breadcrumb>
 

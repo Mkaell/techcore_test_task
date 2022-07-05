@@ -1,7 +1,17 @@
-.subMenu-list li {
+.subMenu {
+    overflow: hidden;
+    padding: 24px;
+    height: 100vh;
+    background: #f5f9fe;
+    transition: all 0.2s;
+}
+.subMenu-list {
+    padding: 0;
+}
+
+.subMenu-list_item {
+    margin: 0;
     list-style-type: none;
-    font-family: "Poppins";
-    font-style: normal;
     font-weight: 500;
     font-size: 14px;
     line-height: 120%;
@@ -10,7 +20,20 @@
     cursor: pointer;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
-
+.subMenu-list_item_wrapper {
+    display: flex;
+    align-items: center;
+}
+.subMenu-list_item_icon {
+    margin-right: 12px;
+    color: #afb6c6;
+}
+.subMenu-list_item_icon.active {
+    color: #00a0ec;
+}
+.subMenu-list_item_wrapper.active {
+    color: #00a0ec;
+}
 .subMenu-title {
     font-family: "Poppins";
     font-style: normal;
@@ -34,4 +57,14 @@
         2px 2px 15px rgba(0, 44, 175, 0.05);
     border-radius: 12px;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+.subMenu-nested-list {
+}
+.subMenu-nested-list_item {
+    list-style-type: none;
+    margin-top: 16px;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 120%;
+    color: #1e212a;
 }

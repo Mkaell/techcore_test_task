@@ -1,0 +1,27 @@
+.content {
+    display: flex;
+    flex-direction: row;
+}
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 24px 40px;
+}
+
+.bread_crumb {
+    display: flex;
+    align-items: center;
+}
+.content-text {
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 16px;
+    letter-spacing: -0.1px;
+    color: #00a0ec;
+}
+
+.ant-breadcrumb li {
+    display: flex;
+    align-items: center;
+}

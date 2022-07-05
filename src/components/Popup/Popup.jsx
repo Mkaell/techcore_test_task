@@ -13,7 +13,12 @@ import { useDispatch } from "react-redux";
 import { addLocation } from "../../store/locationSlice";
 
 import React, { useState } from "react";
-import { months, timeZones, validateMessages } from "../../utils/testdata";
+import {
+    days,
+    months,
+    timeZones,
+    validateMessages,
+} from "../../utils/testdata";
 import InputTags from "../FormComponent/InputTags";
 import { Tag } from "antd";
 
@@ -66,7 +71,7 @@ const Popup = ({ isModalVisible, setIsModalVisible }) => {
     };
     const onFinish = (values) => {
         console.log(values);
-        dispatch(addLocation({ values }));
+        dispatch(addLocation({ ...values }));
         form.resetFields();
         setIsModalVisible(false);
     };
@@ -74,104 +79,61 @@ const Popup = ({ isModalVisible, setIsModalVisible }) => {
         <>
             <Modal
                 width={550}
-                title="Basic Modal"
+                style={{ top: 40 }}
+                title="Create Location"
                 visible={isModalVisible}
                 onCancel={handleCancel}
                 footer={null}
                 getContainer={false}
             >
                 <Form
-                    {...layout}
-                    name="nest-messages"
+                    name="form-location"
+                    className="form-location"
                     onFinish={onFinish}
                     form={form}
-                    // labelWrap
-                    layout="vertical"
+                    layout="horizontal"
                     validateMessages={validateMessages}
                 >
                     <Form.Item
                         name={["location", "name"]}
                         label="Name"
                         rules={[{ required: true }]}
+                        className="form-label"
                     >
-                        <Input />
+                        <Input placeholder="Location name" />
                     </Form.Item>
                     <Form.Item
-                        name={["location", "workWeek"]}
+                        name={["location", "work_week"]}
                         label="Work week"
+                        rules={[{ required: true }]}
+                        className="form-work_week"
+                        style={{ marginBottom: "24px" }}
                     >
                         <Checkbox.Group>
-                            <Row>
-                                <Col span={8}>
-                                    <Checkbox
-                                        value="Sunday"
-                                        style={{ lineHeight: "32px" }}
-                                    >
-                                        Sunday
-                                    </Checkbox>
-                                </Col>
-                                <Col span={8}>
-                                    <Checkbox
-                                        value="Monday"
-                                        style={{ lineHeight: "32px" }}
-                                    >
-                                        Monday
-                                    </Checkbox>
-                                </Col>
-                                <Col span={8}>
-                                    <Checkbox
-                                        value="Tuesday"
-                                        style={{ lineHeight: "32px" }}
-                                    >
-                                        Tuesday
-                                    </Checkbox>
-                                </Col>
-                                <Col span={8}>
-                                    <Checkbox
-                                        value="Wednesday"
-                                        style={{ lineHeight: "32px" }}
-                                    >
-                                        Wednesday
-                                    </Checkbox>
-                                </Col>
-                                <Col span={8}>
-                                    <Checkbox
-                                        value="Thursday"
-                                        style={{ lineHeight: "32px" }}
-                                    >
-                                        Thursday
-                                    </Checkbox>
-                                </Col>
-                                <Col span={8}>
-                                    <Checkbox
-                                        value="Friday"
-                                        style={{ lineHeight: "32px" }}
-                                    >
-                                        Friday
-                                    </Checkbox>
-                                </Col>
-                                <Col span={8}>
-                                    <Checkbox
-                                        value="Saturday"
-                                        style={{ lineHeight: "32px" }}
-                                    >
-                                        Saturday
-                                    </Checkbox>
-                                </Col>
+                            <Row justify="start" style={{ columnGap: "40px" }}>
+                                {days.map((day, i) => (
+                                    <Col style={{ width: "90px" }}>
+                                        <Checkbox
+                                            key={i}
+                                            value={day}
+                                            style={{
+                                                lineHeight: "32px",
+                                                display: "flex",
+                                                justifyContent: "flex-start",
+                                            }}
+                                        >
+                                            {day}
+                                        </Checkbox>
+                                    </Col>
+                                ))}
                             </Row>
                         </Checkbox.Group>
                     </Form.Item>
                     <Form.Item
-                        name={["location", "select"]}
+                        name={["location", "quota_reset"]}
                         label="Leave Quota Reset Based On"
-                        hasFeedback
-                        rules={[
-                            {
-                                required: true,
-                                message: "Please select your country!",
-                            },
-                        ]}
                         initialValue="Accounting year"
+                        className="form-label"
                     >
                         <Select>
                             <Option value="Accounting year">
@@ -185,10 +147,10 @@ const Popup = ({ isModalVisible, setIsModalVisible }) => {
                     <Form.Item
                         label="Fiscal year start"
                         style={{ marginBottom: 0 }}
-                        required
+                        className="form-label"
                     >
                         <Form.Item
-                            name={["location", "yearStartMounth"]}
+                            name={["location", "year_start_mounth"]}
                             hasFeedback
                             rules={[
                                 {
@@ -198,31 +160,38 @@ const Popup = ({ isModalVisible, setIsModalVisible }) => {
                             ]}
                             style={{
                                 display: "inline-block",
-                                width: "calc(50% - 8px)",
+                                width: "125px",
                             }}
                             initialValue="January"
                         >
-                            <Select style={{ width: "125px" }}>
-                                {months.map((month) => (
-                                    <Option value={month}>{month}</Option>
+                            <Select>
+                                {months.map((month, i) => (
+                                    <Option value={month} key={i}>
+                                        {month}
+                                    </Option>
                                 ))}
                             </Select>
                         </Form.Item>
                         <Form.Item
-                            name={["location", "yearStartDate"]}
+                            name={["location", "year_start_date"]}
                             initialValue={1}
                             rules={[{ required: true }]}
                             style={{
                                 display: "inline-block",
-                                width: "calc(50% - 8px)",
+                                width: "80px",
                                 margin: "0 8px",
                             }}
                         >
-                            <InputNumber min={1} max={31} />
+                            <InputNumber
+                                min={1}
+                                max={31}
+                                width="80px"
+                                height={48}
+                            />
                         </Form.Item>
                     </Form.Item>
                     <Form.Item
-                        name={["location", "forwardExpiryDate"]}
+                        name={["location", "expiry_date"]}
                         valuePropName="checked"
                         initialValue={false}
                     >
@@ -234,15 +203,11 @@ const Popup = ({ isModalVisible, setIsModalVisible }) => {
                         </Checkbox>
                     </Form.Item>
                     <Form.Item
-                        name={["location", "weekStartsOn"]}
+                        name={["location", "week_starts_on"]}
                         hasFeedback
                         label="Week Starts On"
-                        rules={[
-                            {
-                                required: true,
-                                // message: "Please select fiscal year start!",
-                            },
-                        ]}
+                        className="form-label"
+                        style={{ width: "145px" }}
                         initialValue="Monday"
                     >
                         <Select>
@@ -251,13 +216,13 @@ const Popup = ({ isModalVisible, setIsModalVisible }) => {
                         </Select>
                     </Form.Item>
                     <Form.Item
-                        name={["location", "timeZone"]}
+                        name={["location", "time_zone"]}
                         hasFeedback
+                        className="form-label"
                         label="Time Zone"
                         rules={[
                             {
                                 required: true,
-                                // message: "Please select fiscal year start!",
                             },
                         ]}
                         initialValue="GMT+03:00 Europe/Minsk"
@@ -274,9 +239,9 @@ const Popup = ({ isModalVisible, setIsModalVisible }) => {
                         </Select>
                     </Form.Item>
                     <Form.Item
-                        name={["location", "people"]}
+                        name={["location", "users"]}
                         label="Users"
-                        rules={[{ required: true }]}
+                        className="form-label"
                     >
                         <Select
                             mode="multiple"
@@ -289,7 +254,7 @@ const Popup = ({ isModalVisible, setIsModalVisible }) => {
                         />
                     </Form.Item>
                     <Form.Item
-                        name={["location", "locationDefault"]}
+                        name={["location", "default"]}
                         valuePropName="checked"
                         initialValue={false}
                     >
