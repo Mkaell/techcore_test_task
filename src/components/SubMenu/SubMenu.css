@@ -19,20 +19,25 @@
     margin-top: 16px;
     cursor: pointer;
 }
+
 .subMenu-list_item_wrapper {
     display: flex;
     align-items: center;
 }
+
 .subMenu-list_item_icon {
     margin-right: 12px;
     color: #afb6c6;
 }
+
 .subMenu-list_item_icon.active {
     color: #00a0ec;
 }
+
 .subMenu-list_item_wrapper.active {
     color: #00a0ec;
 }
+
 .subMenu-title {
     font-family: "Poppins";
     font-style: normal;
@@ -57,12 +62,15 @@
         2px 2px 15px rgba(0, 44, 175, 0.05);
     border-radius: 12px;
 }
+
 .subMenu-button:focus {
     border: none;
 }
+
 .subMenu-nested-list {
     margin-left: 56px;
 }
+
 .subMenu-nested-list_item {
     list-style-type: none;
     padding: 8px 0 8px 56px;
@@ -71,6 +79,7 @@
     line-height: 120%;
     color: #1e212a;
 }
+
 .subMenu-nested-list_item.active {
     background: #eef7fc;
 }

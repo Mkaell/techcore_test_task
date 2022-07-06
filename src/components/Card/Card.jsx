@@ -1,9 +1,8 @@
-import { Avatar, Button, Col, Dropdown, Menu, Row, Space, Tooltip } from "antd";
+import { Avatar, Button, Dropdown, Menu } from "antd";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { removeLocation } from "../../store/locationSlice";
 import {
-    AntDesignOutlined,
     EllipsisOutlined,
     EditOutlined,
     StarOutlined,
@@ -126,13 +125,19 @@ const Card = ({ location }) => {
                     lineHeight: "16px",
                 }}
             >
-                {location.users.map((user, i) => (
-                    <Avatar
-                        key={i}
-                        className="card-user"
-                        src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-                    />
-                ))}
+                {location.users
+                    ? location.users.map((user, i) => (
+                          <Avatar
+                              key={i}
+                              className="card-user"
+                              style={{
+                                  backgroundColor: `#00a0ec`,
+                              }}
+                          >
+                              {user.substring(0, 2)}
+                          </Avatar>
+                      ))
+                    : null}
             </Avatar.Group>
             <DeleteModal
                 isDeleteModalVisible={isDeleteModalVisible}

@@ -1,5 +1,4 @@
 import {
-    Button,
     Checkbox,
     Col,
     Form,
@@ -20,14 +19,14 @@ import {
     validateMessages,
 } from "../../utils/testdata";
 import { Tag } from "antd";
-import { people } from "../../utils/testdata";
+import { users } from "../../utils/testdata";
 import { InfoIcon, WarningIcon } from "../icons/Icons";
 const { Option } = Select;
 
 const FormModal = ({ isModalVisible, setIsModalVisible }) => {
     const dispatch = useDispatch();
     const [form] = Form.useForm();
-    const [infoText, setInfoText] = useState(false);
+    const [infoText, setInfoText] = useState(0);
     const [expireDate, setExpireDate] = useState(false);
     const [defaultLocation, setDefaultLocation] = useState(false);
 
@@ -36,12 +35,14 @@ const FormModal = ({ isModalVisible, setIsModalVisible }) => {
     };
     const handleCancel = () => {
         form.resetFields();
+        setInfoText(0);
         setIsModalVisible(false);
     };
     const onFinish = (values) => {
         console.log(values);
         dispatch(addLocation({ ...values }));
         form.resetFields();
+        setInfoText(0);
         setIsModalVisible(false);
     };
     return (
@@ -81,9 +82,8 @@ const FormModal = ({ isModalVisible, setIsModalVisible }) => {
                         <Checkbox.Group>
                             <Row justify="start" style={{ columnGap: "40px" }}>
                                 {days.map((day, i) => (
-                                    <Col style={{ width: "90px" }}>
+                                    <Col style={{ width: "90px" }} key={i}>
                                         <Checkbox
-                                            key={i}
                                             value={day}
                                             style={{
                                                 lineHeight: "32px",
@@ -99,20 +99,23 @@ const FormModal = ({ isModalVisible, setIsModalVisible }) => {
                         </Checkbox.Group>
                     </Form.Item>
                     <Form.Item
-                        name={["location", "quota_reset"]}
                         label="Leave Quota Reset Based On"
-                        initialValue="Accounting year"
                         className="form-label form-info"
                     >
-                        <Select placeholder="Accounting year">
-                            <Option value="Accounting year">
-                                Accounting year
-                            </Option>
-                            <Option value="User Employment Date">
-                                User Employment Date
-                            </Option>
-                        </Select>
-
+                        <Form.Item
+                            name={["location", "quota_reset"]}
+                            initialValue="Accounting year"
+                            noStyle
+                        >
+                            <Select placeholder="Accounting year">
+                                <Option value="Accounting year">
+                                    Accounting year
+                                </Option>
+                                <Option value="User Employment Date">
+                                    User Employment Date
+                                </Option>
+                            </Select>
+                        </Form.Item>
                         <Tooltip
                             title="This setting will determine if your leave balance will be reset based on the accounting year (company's fiscal year) or based on the employee's start date. Besides quotas, your roll-over policy will also be affected according to this setting."
                             placement="topLeft"
@@ -128,7 +131,6 @@ const FormModal = ({ isModalVisible, setIsModalVisible }) => {
                     >
                         <Form.Item
                             name={["location", "year_start_mounth"]}
-                            hasFeedback
                             rules={[
                                 {
                                     required: true,
@@ -167,24 +169,29 @@ const FormModal = ({ isModalVisible, setIsModalVisible }) => {
                             />
                         </Form.Item>
                     </Form.Item>
-                    <Form.Item
-                        name={["location", "expiry_date"]}
-                        valuePropName="checked"
-                        initialValue={false}
-                        className="form-info"
-                    >
-                        <Checkbox
-                            checked={expireDate}
-                            onChange={(e) => onCheckboxChange(e, setExpireDate)}
+                    <Form.Item className="form-info">
+                        <Form.Item
+                            name={["location", "expiry_date"]}
+                            valuePropName="checked"
+                            initialValue={false}
+                            noStyle
                         >
-                            <span className="form-label_checkbox">
-                                No Brought Forward Expiry Date
-                            </span>
-                        </Checkbox>
+                            <Checkbox
+                                checked={expireDate}
+                                onChange={(e) =>
+                                    onCheckboxChange(e, setExpireDate)
+                                }
+                            >
+                                <span className="form-label_checkbox">
+                                    No Brought Forward Expiry Date
+                                </span>
+                            </Checkbox>
+                        </Form.Item>
                         <Tooltip title="Each year, the user's rolled over leaves will expire on the date you set. The quotas for each leave type are configured through the Leave Types section for this location and each can be set individually to allow or not allow roll overs.">
                             <InfoIcon className="form-icon" color="#1E212A" />
                         </Tooltip>
                     </Form.Item>
+
                     <Form.Item
                         name={["location", "week_starts_on"]}
                         hasFeedback
@@ -199,27 +206,22 @@ const FormModal = ({ isModalVisible, setIsModalVisible }) => {
                         </Select>
                     </Form.Item>
                     <Form.Item
-                        name={["location", "time_zone"]}
-                        hasFeedback
                         className="form-label form-info"
                         label="Time Zone"
-                        rules={[
-                            {
-                                required: true,
-                            },
-                        ]}
-                        initialValue="GMT+03:00 Europe/Minsk"
+                        required
                     >
-                        <Select placeholder="GMT+03:00 Europe/Minsk">
-                            {timeZones.map((zone, i) => (
-                                <Option
-                                    key={i}
-                                    value={zone.offset + " " + zone.name}
-                                >
-                                    {zone.offset} {zone.name}
-                                </Option>
-                            ))}
-                        </Select>
+                        <Form.Item name={["location", "time_zone"]} noStyle>
+                            <Select placeholder="GMT+03:00 Europe/Minsk">
+                                {timeZones.map((zone, i) => (
+                                    <Option
+                                        key={i}
+                                        value={zone.offset + " " + zone.name}
+                                    >
+                                        {zone.offset} {zone.name}
+                                    </Option>
+                                ))}
+                            </Select>
+                        </Form.Item>
                         <Tooltip
                             title="This default time zone is used throughout the system. For example for accurately displaying leave information in the calendar and for the system events listed in the Logs."
                             placement="topLeft"
@@ -227,22 +229,21 @@ const FormModal = ({ isModalVisible, setIsModalVisible }) => {
                             <InfoIcon className="form-icon" color="#1E212A" />
                         </Tooltip>
                     </Form.Item>
-                    <Form.Item
-                        name={["location", "users"]}
-                        label="Users"
-                        className="form-label"
-                    >
-                        <Select
-                            onChange={(e) => setInfoText(e.length)}
-                            placeholder="Add Users"
-                            mode="multiple"
-                            showArrow
-                            tagRender={tagRender}
-                            style={{
-                                width: "100%",
-                            }}
-                            options={people}
-                        />
+
+                    <Form.Item label="Users" className="form-label">
+                        <Form.Item name={["location", "users"]} noStyle>
+                            <Select
+                                onChange={(e) => setInfoText(e)}
+                                placeholder="Add Users"
+                                mode="multiple"
+                                showArrow
+                                tagRender={tagRender}
+                                style={{
+                                    width: "100%",
+                                }}
+                                options={users}
+                            />
+                        </Form.Item>
                         {infoText ? (
                             <div className="form-users_warning ">
                                 <WarningIcon style={{ marginRight: "8px" }} />
@@ -254,6 +255,7 @@ const FormModal = ({ isModalVisible, setIsModalVisible }) => {
                             </div>
                         ) : null}
                     </Form.Item>
+
                     <Form.Item
                         name={["location", "default"]}
                         valuePropName="checked"
@@ -308,7 +310,7 @@ const FormModal = ({ isModalVisible, setIsModalVisible }) => {
                         >
                             <button
                                 className="form-button form-button_create"
-                                htmlType="submit"
+                                type="submit"
                             >
                                 Create
                             </button>
@@ -323,7 +325,7 @@ const FormModal = ({ isModalVisible, setIsModalVisible }) => {
 export default FormModal;
 
 const tagRender = (props) => {
-    const { label, value, closable, onClose } = props;
+    const { label, closable, onClose } = props;
 
     const onPreventMouseDown = (event) => {
         event.preventDefault();

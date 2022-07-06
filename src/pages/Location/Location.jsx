@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import Card from "../../components/Card/Card";
-import { Button } from "antd";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import "./Location.css";
 import FormModal from "../../components/Popup/FormModal";
+
 const Location = () => {
     const [isModalVisible, setIsModalVisible] = useState(false);
     const locations = useSelector((state) => state.locations.locations);

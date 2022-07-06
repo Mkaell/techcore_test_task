@@ -3,7 +3,6 @@ import avatar from "../../assets/Avatar.svg";
 import notfications from "../../assets/notfications-empty.svg";
 import { useEffect } from "react";
 import SubMenu from "../SubMenu/SubMenu";
-import "./SideMenu.css";
 import { useNavigate } from "react-router-dom";
 import {
     DashboardIcon,
@@ -13,14 +12,8 @@ import {
     VacationIcon,
 } from "../icons/Icons";
 
-function getItem(label, path, icon, children) {
-    return {
-        path,
-        icon,
-        children,
-        label,
-    };
-}
+import "./SideMenu.css";
+import { getItem } from "../../utils/testdata";
 
 const items = [
     getItem("Dashboard", "dashboard", <DashboardIcon />),

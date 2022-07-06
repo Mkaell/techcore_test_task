@@ -1,10 +1,3 @@
-.ant-modal-title {
-    font-weight: 600;
-    font-size: 18px;
-    line-height: 120%;
-    color: #1e212a;
-}
-
 .delete .ant-modal-body .delete-content {
     padding: 0;
 }
@@ -15,6 +8,7 @@
     line-height: 150%;
     margin-bottom: 12px;
 }
+
 .delete-button {
     display: flex;
     align-items: center;
@@ -22,7 +16,6 @@
     margin-top: 24px;
     width: 121px;
     height: 40px;
-    border: none;
     border-radius: 6px;
     border: 1px solid #f24445;
     background: white;
@@ -38,17 +31,20 @@
     cursor: pointer;
     transition: all 0.5s ease-out;
 }
+
 .delete-button:hover {
     background: #f24445;
     color: white;
     border: 1px solid #f24445;
 }
+
 .delete-text {
     font-weight: 400;
     font-size: 14px;
     line-height: 150%;
     margin-bottom: 0;
 }
+
 .delete-icon {
     margin-right: 12px;
 }
@@ -63,13 +59,16 @@
 .form-label {
     position: relative;
 }
+
 .form-info .ant-form-item-control-input-content {
     display: flex;
 }
+
 .form-info .ant-select-selection-placeholder {
     display: flex;
     align-items: center;
 }
+
 .form-icon {
     display: flex;
     justify-content: center;
@@ -78,6 +77,7 @@
     cursor: pointer;
     border-radius: 4px;
 }
+
 .form-work_week .ant-form-item-label,
 .form-label_checkbox {
     font-weight: 500;
@@ -85,12 +85,15 @@
     line-height: 16px;
     text-align: start;
 }
+
 .form-label_checkbox .ant-checkbox + span {
     padding-right: 0px;
 }
+
 .form-work_week .ant-form-item-label {
     width: 120px;
 }
+
 .form-label .ant-form-item-label {
     position: absolute;
     top: -12px;
@@ -99,12 +102,14 @@
     background: white;
     padding: 0;
 }
+
 .form-leave_police {
     background: #eef7fc;
     border-radius: 6px;
     padding: 8px 12px;
     border: 1px solid #00a0ec;
 }
+
 .form-leave_police__text {
     font-weight: 400;
     font-size: 12px;
@@ -112,6 +117,7 @@
     color: #1e212a;
     margin: 0;
 }
+
 .form-leave_police__link {
     font-weight: 400;
     font-size: 12px;
@@ -134,9 +140,11 @@
     border: none;
     cursor: pointer;
 }
+
 .form-button_cancel {
     background: #afb6c6;
 }
+
 .form-button_cancel:hover {
     background: rgba(134, 140, 152, 0.7);
 }
@@ -148,15 +156,18 @@
         rgba(0, 160, 236, 0.7)
     );
 }
+
 .form-button_create:hover {
     background: #0683dd;
     color: #fff;
 }
+
 .form-button_wrapper {
     display: flex;
     justify-content: flex-end;
     margin-top: 24px;
 }
+
 .form-label .ant-form-item-label label {
     font-weight: 600;
     font-size: 11px;
@@ -173,16 +184,26 @@
     line-height: 16px;
     color: #868c98;
 }
+
 .ant-modal-body {
     padding: 24px 40px;
     display: flex;
     flex-direction: column;
 }
+
+.ant-modal-title {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 120%;
+    color: #1e212a;
+}
+
 .ant-input,
 .ant-select:not(.ant-select-customize-input) .ant-select-selector,
 .ant-input-number {
     border-radius: 4px;
 }
+
 .ant-tooltip-inner {
     padding: 8px 12px;
     min-width: 350px;
@@ -192,10 +213,12 @@
 .ant-form-item-label > label {
     height: 0;
 }
+
 .ant-form-item-label
     > label.ant-form-item-required:not(.ant-form-item-required-mark-optional):before {
     display: none;
 }
+
 .ant-form-item-label
     > label.ant-form-item-required:not(.ant-form-item-required-mark-optional):after {
     display: inline-block;
@@ -207,9 +230,11 @@
     line-height: 1;
     content: "*";
 }
+
 .ant-form-item-label > label:after {
     display: none;
 }
+
 .ant-modal-content {
     border-radius: 12px;
     overflow: hidden;
@@ -226,10 +251,12 @@
     line-height: 20px;
     color: #afb6c6;
 }
+
 .ant-input {
     height: 48px;
     border-radius: 4px;
 }
+
 .ant-select-selector {
     min-height: 48px;
 }
@@ -237,6 +264,7 @@
 .ant-form-item-control {
     width: 100%;
 }
+
 .ant-form-item-control input {
     height: 48px;
 }
@@ -247,6 +275,7 @@
     align-items: center;
     min-height: 48px;
 }
+
 .ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
     min-height: 50px;
 }

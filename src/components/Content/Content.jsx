@@ -2,8 +2,9 @@ import React from "react";
 import Navigation from "../../routes/Navigation";
 import { Breadcrumb } from "antd";
 import Layout from "antd/lib/layout/layout";
-import "./Content.css";
 import { SettingIcon } from "../icons/Icons";
+import "./Content.css";
+
 const Content = ({ sideMenu }) => {
     return (
         <Layout className="content">
@@ -18,7 +19,6 @@ const Content = ({ sideMenu }) => {
                                 }}
                             />
                         )}
-
                         <span className="content-text">{sideMenu.label}</span>
                     </Breadcrumb.Item>
                     {sideMenu.label === "Settings" && (
