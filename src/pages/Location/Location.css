@@ -22,7 +22,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, 304px);
     grid-template-rows: 1fr 1fr;
-    gap: 20px;
+    gap: 17px;
     justify-content: space-between;
 }
 .location-button {

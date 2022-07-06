@@ -1,28 +1,18 @@
 import logo from "../../assets/logo.svg";
 import avatar from "../../assets/Avatar.svg";
-import home from "../../assets/home.svg";
-import users from "../../assets/users.svg";
-import settings from "../../assets/settings.svg";
-import pl from "../../assets/pl.svg";
-import vacation_manager from "../../assets/icon-vacation-manager.svg";
 import notfications from "../../assets/notfications-empty.svg";
-import {
-    FileOutlined,
-    PieChartOutlined,
-    DesktopOutlined,
-    UserOutlined,
-    TeamOutlined,
-    SearchOutlined,
-} from "@ant-design/icons";
-import { Breadcrumb, Layout, Menu } from "antd";
-import { useEffect, useState } from "react";
-import { Radio, Space, Tabs, Button } from "antd";
+import { useEffect } from "react";
 import SubMenu from "../SubMenu/SubMenu";
 import "./SideMenu.css";
-import Navigation from "../../routes/Navigation";
 import { useNavigate } from "react-router-dom";
-const { Header, Content, Footer, Sider } = Layout;
-const { TabPane } = Tabs;
+import {
+    DashboardIcon,
+    PlIcon,
+    SettingBigIcon,
+    UsersIcon,
+    VacationIcon,
+} from "../icons/Icons";
+
 function getItem(label, path, icon, children) {
     return {
         path,
@@ -33,11 +23,11 @@ function getItem(label, path, icon, children) {
 }
 
 const items = [
-    getItem("Dashboard", "dashboard", home),
-    getItem("Users", "users", users),
-    getItem("Settings", "settings", settings),
-    getItem("P&L", "pl", pl),
-    getItem("Vacation Manager", "vacation", vacation_manager),
+    getItem("Dashboard", "dashboard", <DashboardIcon />),
+    getItem("Users", "users", <UsersIcon />),
+    getItem("Settings", "settings", <SettingBigIcon />),
+    getItem("P&L", "pl", <PlIcon />),
+    getItem("Vacation Manager", "vacation", <VacationIcon />),
 ];
 
 const SideMenu = ({ open, setOpen, sideMenu, setSideMenu }) => {
@@ -74,8 +64,10 @@ const SideMenu = ({ open, setOpen, sideMenu, setSideMenu }) => {
                             key={i}
                             onClick={() => handleLink(item.label, item.path)}
                         >
-                            <img src={item.icon} alt={item.label} />
-                            {item.label}
+                            {item.icon}
+                            <span style={{ marginTop: "8px" }}>
+                                {item.label}
+                            </span>
                         </li>
                     ))}
                 </ul>

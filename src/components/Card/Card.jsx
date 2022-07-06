@@ -28,18 +28,7 @@ const Card = ({ location }) => {
                     {
                         label: (
                             <Button
-                                style={{
-                                    fontFamily: "Poppins",
-                                    display: "flex",
-                                    justifyContent: "flex-start",
-                                    alignItems: "center",
-                                    border: "none",
-                                    padding: "0",
-                                    width: "100%",
-                                    fontSize: "13px",
-                                    lineHeight: "16px",
-                                    color: "#1E212A",
-                                }}
+                                className="card-menu_button"
                                 icon={<EditOutlined />}
                             >
                                 Edit
@@ -50,18 +39,7 @@ const Card = ({ location }) => {
                     {
                         label: (
                             <Button
-                                style={{
-                                    fontFamily: "Poppins",
-                                    display: "flex",
-                                    justifyContent: "flex-start",
-                                    alignItems: "center",
-                                    border: "none",
-                                    padding: "0",
-                                    width: "100%",
-                                    fontSize: "13px",
-                                    lineHeight: "16px",
-                                    color: "#1E212A",
-                                }}
+                                className="card-menu_button"
                                 icon={<StarOutlined />}
                             >
                                 Set as Default
@@ -72,18 +50,7 @@ const Card = ({ location }) => {
                     {
                         label: (
                             <Button
-                                style={{
-                                    fontFamily: "Poppins",
-                                    display: "flex",
-                                    justifyContent: "flex-start",
-                                    alignItems: "center",
-                                    border: "none",
-                                    padding: "0",
-                                    width: "100%",
-                                    fontSize: "13px",
-                                    lineHeight: "16px",
-                                    color: "#1E212A",
-                                }}
+                                className="card-menu_button"
                                 onClick={showDeleteModal}
                                 icon={<DeleteOutlined />}
                             >
@@ -172,6 +139,7 @@ const Card = ({ location }) => {
                 handleCancel={handleCancel}
                 deleteLocation={deleteLocation}
                 id={location.id}
+                label={location.name}
             />
         </div>
     );

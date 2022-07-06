@@ -42,7 +42,7 @@
     color: #1e212a;
 }
 .card-icon {
-    display: flex;
+    display: flex !important;
     justify-content: center;
     align-items: center;
     width: 24px;
@@ -61,6 +61,18 @@
     background: transparent;
     border: none;
     padding: 0;
+}
+.card-menu_button {
+    font-family: "Poppins";
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border: none;
+    padding: 16px;
+    width: 100%;
+    font-size: 13px;
+    line-height: 16px;
+    color: #1e212a;
 }
 .card-icon_button:focus .card-icon {
     color: #00a0ec;
@@ -103,4 +115,11 @@
 .ant-avatar-group .ant-avatar:not(:first-child) {
     margin-right: 4px;
     margin-left: 0;
+}
+
+.ant-dropdown-menu-item:hover .card-menu_button {
+    background: #f0f0f0;
+}
+.ant-dropdown-menu-item {
+    padding: 0;
 }

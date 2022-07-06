@@ -34,9 +34,6 @@
     cursor: pointer;
     color: #afb6c6;
 }
-.sideMenu-list li:hover {
-    background: #eef7fc;
-}
 
 .sideMenu-list li:first-child {
     margin-top: 0px;
@@ -58,4 +55,8 @@
 .sideMenu-img-notification {
     width: 16px;
     height: 16px;
+}
+
+.sideMenu-list li:hover {
+    background: #eef7fc;
 }

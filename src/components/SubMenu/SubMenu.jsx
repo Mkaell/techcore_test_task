@@ -11,45 +11,39 @@ const SubMenu = ({ open, sideMenu, setOpen }) => {
                 className="subMenu"
                 style={{
                     width: open ? "240px" : "0px",
-                    paddingRight: open ? "24px" : "0px",
-                    paddingLeft: open ? "24px" : "0px",
                 }}
             >
                 {sideMenu.label === "Settings" ? (
                     <>
                         <h2 className="subMenu-title">{sideMenu.label}</h2>
-                        <ul className="subMenu-list">
-                            <li className="subMenu-list_item">
+                        <div className="subMenu-list">
+                            <div className="subMenu-list_item">
                                 <span className="subMenu-list_item_wrapper">
                                     <SettingGeneralIcon className="subMenu-list_item_icon" />
                                     General
                                 </span>
-                            </li>
+                            </div>
 
-                            <li className="subMenu-list_item ">
+                            <div className="subMenu-list_item ">
                                 <span className="subMenu-list_item_wrapper active">
                                     <SettingVacationIcon className="subMenu-list_item_icon active" />
                                     Vacation Manager
                                 </span>
-                                <ul className="subMenu-nested-list">
-                                    <li className="subMenu-nested-list_item">
-                                        Leave Types
-                                    </li>
-                                    <li className="subMenu-nested-list_item">
-                                        <NavLink
-                                            to=""
-                                            style={({ isActive }) =>
-                                                isActive
-                                                    ? { color: "#00a0ec" }
-                                                    : undefined
-                                            }
-                                        >
-                                            locations
-                                        </NavLink>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
+                            </div>
+                        </div>
+                        <div className="subMenu-nested-list_item">
+                            Leave Types
+                        </div>
+                        <div className="subMenu-nested-list_item active">
+                            <NavLink
+                                to=""
+                                style={({ isActive }) =>
+                                    isActive ? { color: "#00a0ec" } : undefined
+                                }
+                            >
+                                Locations
+                            </NavLink>
+                        </div>
                     </>
                 ) : (
                     <h2 className="subMenu-title">{sideMenu.label}</h2>

@@ -3,7 +3,7 @@ import Card from "../../components/Card/Card";
 import { Button } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import "./Location.css";
-import Popup from "../../components/Popup/Popup";
+import FormModal from "../../components/Popup/FormModal";
 const Location = () => {
     const [isModalVisible, setIsModalVisible] = useState(false);
     const locations = useSelector((state) => state.locations.locations);
@@ -16,7 +16,7 @@ const Location = () => {
         <>
             <div className="location-title_wrapper">
                 <div>
-                    <h2 className="location-title">Location</h2>
+                    <h2 className="location-title">Locations</h2>
                     <p className="location-text">
                         Create new users or update the existng users. You can
                         then set their permissons here too.{" "}
@@ -31,7 +31,7 @@ const Location = () => {
                     <Card location={location} key={location.id} />
                 ))}
             </div>
-            <Popup
+            <FormModal
                 showModal={showModal}
                 isModalVisible={isModalVisible}
                 setIsModalVisible={setIsModalVisible}

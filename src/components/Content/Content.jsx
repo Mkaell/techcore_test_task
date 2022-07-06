@@ -10,17 +10,22 @@ const Content = ({ sideMenu }) => {
             <div className="content-wrapper">
                 <Breadcrumb separator=">" style={{ marginBottom: "8px" }}>
                     <Breadcrumb.Item className="bread_crumb">
-                        <SettingIcon
-                            style={{
-                                color: "#00A0EC",
-                                marginRight: "4px",
-                            }}
-                        />
+                        {sideMenu.label === "Settings" && (
+                            <SettingIcon
+                                style={{
+                                    color: "#00A0EC",
+                                    marginRight: "4px",
+                                }}
+                            />
+                        )}
+
                         <span className="content-text">{sideMenu.label}</span>
                     </Breadcrumb.Item>
                     {sideMenu.label === "Settings" && (
                         <Breadcrumb.Item className="bread_crumb">
-                            <span className="content-text">locations</span>
+                            <span className="content-text">
+                                Vacation Manager
+                            </span>
                         </Breadcrumb.Item>
                     )}
                 </Breadcrumb>

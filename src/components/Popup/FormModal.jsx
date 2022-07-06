@@ -8,10 +8,10 @@ import {
     Modal,
     Row,
     Select,
+    Tooltip,
 } from "antd";
 import { useDispatch } from "react-redux";
 import { addLocation } from "../../store/locationSlice";
-
 import React, { useState } from "react";
 import {
     days,
@@ -19,46 +19,15 @@ import {
     timeZones,
     validateMessages,
 } from "../../utils/testdata";
-import InputTags from "../FormComponent/InputTags";
 import { Tag } from "antd";
-
 import { people } from "../../utils/testdata";
+import { InfoIcon, WarningIcon } from "../icons/Icons";
 const { Option } = Select;
-const layout = {
-    labelCol: {
-        span: 8,
-    },
-    wrapperCol: {
-        span: 16,
-    },
-};
 
-const tagRender = (props) => {
-    const { label, value, closable, onClose } = props;
-
-    const onPreventMouseDown = (event) => {
-        event.preventDefault();
-        event.stopPropagation();
-    };
-
-    return (
-        <Tag
-            onMouseDown={onPreventMouseDown}
-            closable={closable}
-            onClose={onClose}
-            style={{
-                marginRight: 3,
-                background: "#EEF7FC",
-                color: "#00A0EC",
-            }}
-        >
-            {label}
-        </Tag>
-    );
-};
-const Popup = ({ isModalVisible, setIsModalVisible }) => {
+const FormModal = ({ isModalVisible, setIsModalVisible }) => {
     const dispatch = useDispatch();
     const [form] = Form.useForm();
+    const [infoText, setInfoText] = useState(false);
     const [expireDate, setExpireDate] = useState(false);
     const [defaultLocation, setDefaultLocation] = useState(false);
 
@@ -100,7 +69,7 @@ const Popup = ({ isModalVisible, setIsModalVisible }) => {
                         rules={[{ required: true }]}
                         className="form-label"
                     >
-                        <Input placeholder="Location name" />
+                        <Input placeholder="Location Name" />
                     </Form.Item>
                     <Form.Item
                         name={["location", "work_week"]}
@@ -133,9 +102,9 @@ const Popup = ({ isModalVisible, setIsModalVisible }) => {
                         name={["location", "quota_reset"]}
                         label="Leave Quota Reset Based On"
                         initialValue="Accounting year"
-                        className="form-label"
+                        className="form-label form-info"
                     >
-                        <Select>
+                        <Select placeholder="Accounting year">
                             <Option value="Accounting year">
                                 Accounting year
                             </Option>
@@ -143,9 +112,17 @@ const Popup = ({ isModalVisible, setIsModalVisible }) => {
                                 User Employment Date
                             </Option>
                         </Select>
+
+                        <Tooltip
+                            title="This setting will determine if your leave balance will be reset based on the accounting year (company's fiscal year) or based on the employee's start date. Besides quotas, your roll-over policy will also be affected according to this setting."
+                            placement="topLeft"
+                        >
+                            <InfoIcon className="form-icon" color="#1E212A" />
+                        </Tooltip>
                     </Form.Item>
+
                     <Form.Item
-                        label="Fiscal year start"
+                        label="Fiscal Year Start"
                         style={{ marginBottom: 0 }}
                         className="form-label"
                     >
@@ -194,13 +171,19 @@ const Popup = ({ isModalVisible, setIsModalVisible }) => {
                         name={["location", "expiry_date"]}
                         valuePropName="checked"
                         initialValue={false}
+                        className="form-info"
                     >
                         <Checkbox
                             checked={expireDate}
                             onChange={(e) => onCheckboxChange(e, setExpireDate)}
                         >
-                            No Brought Forward Expiry Date
+                            <span className="form-label_checkbox">
+                                No Brought Forward Expiry Date
+                            </span>
                         </Checkbox>
+                        <Tooltip title="Each year, the user's rolled over leaves will expire on the date you set. The quotas for each leave type are configured through the Leave Types section for this location and each can be set individually to allow or not allow roll overs.">
+                            <InfoIcon className="form-icon" color="#1E212A" />
+                        </Tooltip>
                     </Form.Item>
                     <Form.Item
                         name={["location", "week_starts_on"]}
@@ -218,7 +201,7 @@ const Popup = ({ isModalVisible, setIsModalVisible }) => {
                     <Form.Item
                         name={["location", "time_zone"]}
                         hasFeedback
-                        className="form-label"
+                        className="form-label form-info"
                         label="Time Zone"
                         rules={[
                             {
@@ -227,7 +210,7 @@ const Popup = ({ isModalVisible, setIsModalVisible }) => {
                         ]}
                         initialValue="GMT+03:00 Europe/Minsk"
                     >
-                        <Select>
+                        <Select placeholder="GMT+03:00 Europe/Minsk">
                             {timeZones.map((zone, i) => (
                                 <Option
                                     key={i}
@@ -237,6 +220,12 @@ const Popup = ({ isModalVisible, setIsModalVisible }) => {
                                 </Option>
                             ))}
                         </Select>
+                        <Tooltip
+                            title="This default time zone is used throughout the system. For example for accurately displaying leave information in the calendar and for the system events listed in the Logs."
+                            placement="topLeft"
+                        >
+                            <InfoIcon className="form-icon" color="#1E212A" />
+                        </Tooltip>
                     </Form.Item>
                     <Form.Item
                         name={["location", "users"]}
@@ -244,6 +233,8 @@ const Popup = ({ isModalVisible, setIsModalVisible }) => {
                         className="form-label"
                     >
                         <Select
+                            onChange={(e) => setInfoText(e.length)}
+                            placeholder="Add Users"
                             mode="multiple"
                             showArrow
                             tagRender={tagRender}
@@ -252,11 +243,22 @@ const Popup = ({ isModalVisible, setIsModalVisible }) => {
                             }}
                             options={people}
                         />
+                        {infoText ? (
+                            <div className="form-users_warning ">
+                                <WarningIcon style={{ marginRight: "8px" }} />
+                                <p>
+                                    Adding or removing a user might impact the
+                                    user's configuration and leave information
+                                    (e.g. the initial brought forward days).
+                                </p>
+                            </div>
+                        ) : null}
                     </Form.Item>
                     <Form.Item
                         name={["location", "default"]}
                         valuePropName="checked"
                         initialValue={false}
+                        className="form-info"
                     >
                         <Checkbox
                             checked={defaultLocation}
@@ -264,47 +266,39 @@ const Popup = ({ isModalVisible, setIsModalVisible }) => {
                                 onCheckboxChange(e, setDefaultLocation)
                             }
                         >
-                            Make This Location Default
+                            <span className="form-label_checkbox">
+                                Make This Location Default
+                            </span>
                         </Checkbox>
+                        <Tooltip title="By making this Location the default one, all new team members will be automatically added to this Location.">
+                            <InfoIcon className="form-icon" color="#1E212A" />
+                        </Tooltip>
                     </Form.Item>
-                    <div
-                        style={{
-                            background: "#EEF7FC",
-                            borderRadius: "6px",
-                            padding: "8px 12px",
-                        }}
-                    >
-                        <p>
-                            Once you've created a Location, assign a
-                            <span>Leave Policy</span> to the Location, in order
-                            to enable Users to request Leave. To assign a Leave
-                            Policy, go to Location {">"} Leave Policies {">"}
+                    <div className="form-leave_police">
+                        <p className="form-leave_police__text">
+                            Once you've created a Location, assign a{" "}
+                            <a href="#" className="form-leave_police__link">
+                                Leave Policy
+                            </a>{" "}
+                            to the Location, in order to enable Users to request
+                            Leave. To assign a Leave Policy, go to Location{" "}
+                            {">"} Leave Policies {">"}
                             Assign Leave Policy.
                         </p>
                     </div>
-                    <div
-                        style={{
-                            display: "flex",
-                            justifyContent: "flex-end",
-                            height: "auto",
-                        }}
-                    >
+                    <div className="form-button_wrapper">
                         <Form.Item
                             style={{
                                 display: "inline-block",
                                 margin: "0 8px 0",
                             }}
                         >
-                            <Button
-                                style={{
-                                    background: "#AFB6C6",
-                                    color: "#fff",
-                                    borderRadius: "6px",
-                                }}
+                            <button
+                                className="form-button form-button_cancel"
                                 onClick={handleCancel}
                             >
-                                CANSEL
-                            </Button>
+                                Cancel
+                            </button>
                         </Form.Item>
                         <Form.Item
                             style={{
@@ -312,15 +306,12 @@ const Popup = ({ isModalVisible, setIsModalVisible }) => {
                                 margin: "0 ",
                             }}
                         >
-                            <Button
-                                style={{
-                                    borderRadius: "6px",
-                                }}
-                                type="primary"
+                            <button
+                                className="form-button form-button_create"
                                 htmlType="submit"
                             >
                                 Create
-                            </Button>
+                            </button>
                         </Form.Item>
                     </div>
                 </Form>
@@ -329,4 +320,30 @@ const Popup = ({ isModalVisible, setIsModalVisible }) => {
     );
 };
 
-export default Popup;
+export default FormModal;
+
+const tagRender = (props) => {
+    const { label, value, closable, onClose } = props;
+
+    const onPreventMouseDown = (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+    };
+
+    return (
+        <Tag
+            onMouseDown={onPreventMouseDown}
+            closable={closable}
+            onClose={onClose}
+            style={{
+                marginRight: 4,
+                background: "#EEF7FC",
+                color: "#00A0EC",
+                border: "none",
+                padding: "4px 8px",
+            }}
+        >
+            {label}
+        </Tag>
+    );
+};
