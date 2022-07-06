@@ -12,6 +12,9 @@
 
 .card a {
     color: #00a0ec;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 0;
 }
 
 .card-title {
@@ -40,7 +43,7 @@
     font-style: normal;
     font-weight: 500;
     font-size: 13px;
-    line-height: 16px;
+    line-height: 0px;
     width: 108px;
     color: #1e212a;
 }

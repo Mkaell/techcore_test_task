@@ -188,13 +188,15 @@ const FormModal = ({ isModalVisible, setIsModalVisible }) => {
                             </Checkbox>
                         </Form.Item>
                         <Tooltip title="Each year, the user's rolled over leaves will expire on the date you set. The quotas for each leave type are configured through the Leave Types section for this location and each can be set individually to allow or not allow roll overs.">
-                            <InfoIcon className="form-icon" color="#1E212A" />
+                            <InfoIcon
+                                className="form-icon form-icon_checkbox"
+                                color="#1E212A"
+                            />
                         </Tooltip>
                     </Form.Item>
 
                     <Form.Item
                         name={["location", "week_starts_on"]}
-                        hasFeedback
                         label="Week Starts On"
                         className="form-label"
                         style={{ width: "145px" }}
@@ -273,7 +275,10 @@ const FormModal = ({ isModalVisible, setIsModalVisible }) => {
                             </span>
                         </Checkbox>
                         <Tooltip title="By making this Location the default one, all new team members will be automatically added to this Location.">
-                            <InfoIcon className="form-icon" color="#1E212A" />
+                            <InfoIcon
+                                className="form-icon form-icon_checkbox"
+                                color="#1E212A"
+                            />
                         </Tooltip>
                     </Form.Item>
                     <div className="form-leave_police">

@@ -43,27 +43,32 @@ const SideMenu = ({ open, setOpen, sideMenu, setSideMenu }) => {
     return (
         <>
             <div className="sideMenu">
-                <div className="logo">
-                    <img src={logo} alt="logo" />
+                <div className="sideMenu-wrapper">
+                    <div className="logo">
+                        <img src={logo} alt="logo" />
+                    </div>
+                    <ul className="sideMenu-list">
+                        {items.map((item, i) => (
+                            <li
+                                style={
+                                    sideMenu.label === item.label
+                                        ? { color: "#00a0ec" }
+                                        : { color: "#afb6c6" }
+                                }
+                                key={i}
+                                onClick={() =>
+                                    handleLink(item.label, item.path)
+                                }
+                            >
+                                {item.icon}
+                                <span style={{ marginTop: "8px" }}>
+                                    {item.label}
+                                </span>
+                            </li>
+                        ))}
+                    </ul>
                 </div>
-                <ul className="sideMenu-list">
-                    {items.map((item, i) => (
-                        <li
-                            style={
-                                sideMenu.label === item.label
-                                    ? { color: "#00a0ec" }
-                                    : { color: "#afb6c6" }
-                            }
-                            key={i}
-                            onClick={() => handleLink(item.label, item.path)}
-                        >
-                            {item.icon}
-                            <span style={{ marginTop: "8px" }}>
-                                {item.label}
-                            </span>
-                        </li>
-                    ))}
-                </ul>
+
                 <div className="sideMenu-img_wrapper">
                     <img
                         src={notfications}

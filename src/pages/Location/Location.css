@@ -25,7 +25,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, 304px);
     grid-template-rows: 1fr 1fr;
-    gap: 17px;
+    gap: 15px;
     justify-content: space-between;
 }
 

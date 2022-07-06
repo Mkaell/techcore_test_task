@@ -104,7 +104,7 @@ const Card = ({ location }) => {
                         <a href="#">View Holidays</a>
                     </span>
                 </div>
-                <div style={{ marginTop: "10px" }}>
+                <div style={{ marginTop: "0px" }}>
                     <p className="card-text">Leave Policies</p>
                     <span>
                         <a href="#">View Leave Policies</a>
