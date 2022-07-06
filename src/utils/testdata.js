@@ -65,7 +65,7 @@ export const locations = [
     },
     {
         id: "123dfsf234",
-        name: "Belarus",
+        name: "USA",
         work_week: [("Wednesday", "Saturday")],
         quota_reset: "User Employment Date",
         year_start_month: "March",
