@@ -63,6 +63,9 @@
 .form-info .ant-form-item-control-input-content {
     display: flex;
 }
+.ant-form-item-control-input {
+    min-height: 0px;
+}
 
 .form-info .ant-select-selection-placeholder {
     display: flex;
@@ -94,7 +97,7 @@
 }
 
 .form-work_week .ant-form-item-label {
-    width: 120px;
+    width: 140px;
 }
 
 .form-label .ant-form-item-label {
@@ -174,8 +177,9 @@
 .form-label .ant-form-item-label label {
     font-weight: 600;
     font-size: 11px;
-    line-height: 16px;
     color: #1e212a;
+    font-size: 11px;
+    line-height: 15px;
 }
 
 .form-users_warning {
@@ -192,7 +196,7 @@
 }
 
 .ant-modal-body {
-    padding: 24px 40px;
+    padding: 32px 40px 24px;
     display: flex;
     flex-direction: column;
 }
@@ -293,4 +297,12 @@
 .ant-input-number-prefix {
     order: 1;
     margin-inline-end: 16px;
+}
+
+.ant-input-number-affix-wrapper {
+    width: 80px;
+}
+.ant-input-number-affix-wrapper {
+    min-height: 0px;
+    border-radius: 4px;
 }

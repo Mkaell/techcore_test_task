@@ -9,7 +9,7 @@ const Content = ({ sideMenu }) => {
     return (
         <Layout className="content">
             <div className="content-wrapper">
-                <Breadcrumb separator=">" style={{ marginBottom: "8px" }}>
+                <Breadcrumb separator=">" style={{ marginBottom: "2px" }}>
                     <Breadcrumb.Item className="bread_crumb">
                         {sideMenu.label === "Settings" && (
                             <SettingIcon

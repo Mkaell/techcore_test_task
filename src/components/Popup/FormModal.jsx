@@ -74,20 +74,23 @@ const FormModal = ({ isModalVisible, setIsModalVisible }) => {
                     </Form.Item>
                     <Form.Item
                         name={["location", "work_week"]}
-                        label="Work week"
+                        label="Workweek"
                         rules={[{ required: true }]}
                         className="form-work_week"
-                        style={{ marginBottom: "24px" }}
+                        // style={{ marginBottom: "26px" }}
                     >
                         <Checkbox.Group>
-                            <Row justify="start" style={{ columnGap: "40px" }}>
+                            <Row
+                                justify="start"
+                                style={{ columnGap: "30px", rowGap: "5px" }}
+                            >
                                 {days.map((day, i) => (
                                     <Col style={{ width: "90px" }} key={i}>
                                         <Checkbox
                                             value={day}
                                             style={{
-                                                lineHeight: "32px",
                                                 display: "flex",
+                                                fontSize: "13px",
                                                 justifyContent: "flex-start",
                                             }}
                                         >
@@ -101,6 +104,7 @@ const FormModal = ({ isModalVisible, setIsModalVisible }) => {
                     <Form.Item
                         label="Leave Quota Reset Based On"
                         className="form-label form-info"
+                        style={{ marginBottom: "32px" }}
                     >
                         <Form.Item
                             name={["location", "quota_reset"]}
@@ -127,11 +131,7 @@ const FormModal = ({ isModalVisible, setIsModalVisible }) => {
                         </Tooltip>
                     </Form.Item>
 
-                    <Form.Item
-                        label="Fiscal Year Start"
-                        style={{ marginBottom: 0 }}
-                        className="form-label"
-                    >
+                    <Form.Item label="Fiscal Year Start" className="form-label">
                         <Form.Item
                             name={["location", "year_start_mounth"]}
                             rules={[
@@ -143,6 +143,7 @@ const FormModal = ({ isModalVisible, setIsModalVisible }) => {
                             style={{
                                 display: "inline-block",
                                 width: "125px",
+                                marginBottom: "0px",
                             }}
                             initialValue="January"
                         >
@@ -161,7 +162,7 @@ const FormModal = ({ isModalVisible, setIsModalVisible }) => {
                             style={{
                                 display: "inline-block",
                                 width: "80px",
-                                margin: "0 8px",
+                                margin: "0 0 0 16px",
                             }}
                         >
                             <InputNumber
@@ -173,7 +174,10 @@ const FormModal = ({ isModalVisible, setIsModalVisible }) => {
                             />
                         </Form.Item>
                     </Form.Item>
-                    <Form.Item className="form-info">
+                    <Form.Item
+                        className="form-info"
+                        style={{ marginBottom: "32px" }}
+                    >
                         <Form.Item
                             name={["location", "expiry_date"]}
                             valuePropName="checked"
@@ -186,7 +190,10 @@ const FormModal = ({ isModalVisible, setIsModalVisible }) => {
                                     onCheckboxChange(e, setExpireDate)
                                 }
                             >
-                                <span className="form-label_checkbox">
+                                <span
+                                    className="form-label_checkbox"
+                                    style={{ paddingLeft: "8px" }}
+                                >
                                     No Brought Forward Expiry Date
                                 </span>
                             </Checkbox>
@@ -203,7 +210,7 @@ const FormModal = ({ isModalVisible, setIsModalVisible }) => {
                         name={["location", "week_starts_on"]}
                         label="Week Starts On"
                         className="form-label"
-                        style={{ width: "145px" }}
+                        style={{ width: "145px", marginBottom: "32px" }}
                         initialValue="Monday"
                     >
                         <Select suffixIcon={<ArrowsIcon />}>
@@ -215,6 +222,7 @@ const FormModal = ({ isModalVisible, setIsModalVisible }) => {
                         className="form-label form-info"
                         label="Time Zone"
                         required
+                        style={{ marginBottom: "32px" }}
                     >
                         <Form.Item name={["location", "time_zone"]} noStyle>
                             <Select
@@ -257,7 +265,7 @@ const FormModal = ({ isModalVisible, setIsModalVisible }) => {
                         {infoText ? (
                             <div className="form-users_warning ">
                                 <WarningIcon style={{ marginRight: "8px" }} />
-                                <p>
+                                <p style={{ marginBottom: "0px" }}>
                                     Adding or removing a user might impact the
                                     user's configuration and leave information
                                     (e.g. the initial brought forward days).
@@ -278,7 +286,10 @@ const FormModal = ({ isModalVisible, setIsModalVisible }) => {
                                 onCheckboxChange(e, setDefaultLocation)
                             }
                         >
-                            <span className="form-label_checkbox">
+                            <span
+                                className="form-label_checkbox"
+                                style={{ paddingLeft: "8px" }}
+                            >
                                 Make This Location Default
                             </span>
                         </Checkbox>
