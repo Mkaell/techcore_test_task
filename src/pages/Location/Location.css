@@ -23,7 +23,7 @@
 .location-cards_wrapper {
     margin-top: 40px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, 304px);
+    grid-template-columns: repeat(3, minmax(304px, 1fr));
     grid-template-rows: 1fr 1fr;
     gap: 15px;
     justify-content: space-between;

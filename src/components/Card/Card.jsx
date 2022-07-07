@@ -1,5 +1,5 @@
 import { Avatar, Button, Dropdown, Menu } from "antd";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { removeLocation } from "../../store/locationSlice";
 import {
@@ -10,10 +10,10 @@ import {
 } from "@ant-design/icons";
 import "./Card.css";
 import DeleteModal from "../Popup/DeleteModal";
+import { GroupIcon } from "../icons/Icons";
 
 const Card = ({ location }) => {
     const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
-
     const dispatch = useDispatch();
 
     const deleteLocation = (id) => {
@@ -89,10 +89,7 @@ const Card = ({ location }) => {
                 >
                     <a onClick={(e) => e.preventDefault()}>
                         <Button className="card-icon_button">
-                            <EllipsisOutlined
-                                className="card-icon"
-                                rotate={90}
-                            />
+                            <GroupIcon className="card-icon" />
                         </Button>
                     </a>
                 </Dropdown>
@@ -112,6 +109,7 @@ const Card = ({ location }) => {
                 </div>
             </div>
             <Avatar.Group
+                className="avatar"
                 style={{ marginTop: "16px", width: "100%" }}
                 maxCount={7}
                 maxPopoverTrigger="click"
@@ -123,6 +121,7 @@ const Card = ({ location }) => {
                     fontweight: "600 !important",
                     fontSize: "14px",
                     lineHeight: "16px",
+                    width: "30px",
                 }}
             >
                 {location.users

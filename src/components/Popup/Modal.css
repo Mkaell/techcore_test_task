@@ -100,10 +100,10 @@
 .form-label .ant-form-item-label {
     position: absolute;
     top: -12px;
-    left: 12px;
+    left: 6px;
     z-index: 35;
     background: white;
-    padding: 0;
+    padding: 0 6px;
 }
 
 .form-leave_police {
@@ -214,6 +214,7 @@
     padding: 8px 12px;
     min-width: 350px;
     border-radius: 4px;
+    font-size: 11px;
 }
 
 .ant-form-item-label > label {
@@ -259,12 +260,12 @@
 }
 
 .ant-input {
-    height: 48px;
+    height: 40px;
     border-radius: 4px;
 }
 
 .ant-select-selector {
-    min-height: 48px;
+    min-height: 40px;
 }
 
 .ant-form-item-control {
@@ -272,20 +273,24 @@
 }
 
 .ant-form-item-control input {
-    height: 48px;
+    height: 40px;
 }
 
 .ant-select-selection-item {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    min-height: 48px;
+    min-height: 40px;
 }
-
-/* .ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
-    min-height: 48px;
-} */
 
 .ant-tag-close-icon {
     color: #00a0ec;
+}
+.ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
+    height: 40px;
+}
+
+.ant-input-number-prefix {
+    order: 1;
+    margin-inline-end: 16px;
 }

@@ -20,7 +20,7 @@ import {
 } from "../../utils/testdata";
 import { Tag } from "antd";
 import { users } from "../../utils/testdata";
-import { InfoIcon, WarningIcon } from "../icons/Icons";
+import { ArrowsIcon, InfoIcon, WarningIcon } from "../icons/Icons";
 const { Option } = Select;
 
 const FormModal = ({ isModalVisible, setIsModalVisible }) => {
@@ -107,7 +107,10 @@ const FormModal = ({ isModalVisible, setIsModalVisible }) => {
                             initialValue="Accounting year"
                             noStyle
                         >
-                            <Select placeholder="Accounting year">
+                            <Select
+                                placeholder="Accounting year"
+                                suffixIcon={<ArrowsIcon />}
+                            >
                                 <Option value="Accounting year">
                                     Accounting year
                                 </Option>
@@ -143,7 +146,7 @@ const FormModal = ({ isModalVisible, setIsModalVisible }) => {
                             }}
                             initialValue="January"
                         >
-                            <Select>
+                            <Select suffixIcon={<ArrowsIcon />}>
                                 {months.map((month, i) => (
                                     <Option value={month} key={i}>
                                         {month}
@@ -162,6 +165,7 @@ const FormModal = ({ isModalVisible, setIsModalVisible }) => {
                             }}
                         >
                             <InputNumber
+                                prefix={<ArrowsIcon />}
                                 min={1}
                                 max={31}
                                 width="80px"
@@ -202,7 +206,7 @@ const FormModal = ({ isModalVisible, setIsModalVisible }) => {
                         style={{ width: "145px" }}
                         initialValue="Monday"
                     >
-                        <Select>
+                        <Select suffixIcon={<ArrowsIcon />}>
                             <Option value="Monday">Monday</Option>
                             <Option value="Sunday">Sunday</Option>
                         </Select>
@@ -213,7 +217,10 @@ const FormModal = ({ isModalVisible, setIsModalVisible }) => {
                         required
                     >
                         <Form.Item name={["location", "time_zone"]} noStyle>
-                            <Select placeholder="GMT+03:00 Europe/Minsk">
+                            <Select
+                                placeholder="GMT+03:00 Europe/Minsk"
+                                suffixIcon={<ArrowsIcon />}
+                            >
                                 {timeZones.map((zone, i) => (
                                     <Option
                                         key={i}
@@ -239,6 +246,7 @@ const FormModal = ({ isModalVisible, setIsModalVisible }) => {
                                 placeholder="Add Users"
                                 mode="multiple"
                                 showArrow
+                                suffixIcon={<ArrowsIcon />}
                                 tagRender={tagRender}
                                 style={{
                                     width: "100%",
